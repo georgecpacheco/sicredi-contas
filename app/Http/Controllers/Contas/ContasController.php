@@ -32,7 +32,7 @@ class ContasController extends Controller
 
     public function importacao(ImportRequest $request)
     {
-        $data['contas'] = $this->repository->getAll();
+
         $dados = Excel::toArray(new ContasImport(), $request->file('importacsv'), \Maatwebsite\Excel\Excel::CSV);
         $total = count($dados[0]);
 
@@ -57,7 +57,7 @@ class ContasController extends Controller
 
         }
 
-
+        $data['contas'] = $this->repository->getAll();
         return view('contas.index')->with($data);
 
     }

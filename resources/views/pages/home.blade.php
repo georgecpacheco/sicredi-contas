@@ -11,7 +11,7 @@
             pode importar o arquivo .csv das contas para dentro do nosso banco de dados.
         </p>
         <p>
-            <a class="btn btn-primary btn-large" href="#"><i class="fa fa-cloud-upload"></i> Importar arquivo de contas</a>
+            <a class="btn btn-primary btn-large" href="{{ route('contas.contas.index') }}"><i class="fa fa-cloud-upload"></i> Importar arquivo de contas</a>
         </p>
     </div>
 

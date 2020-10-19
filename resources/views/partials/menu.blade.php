@@ -14,8 +14,11 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('associados.associados.create') }}"><i class="fa fa-user-plus"></i> Novo associado</a>
                     <a class="dropdown-item" href="{{ route('associados.associados.index') }}"><i class="fa fa-users"></i> Associados cadastrados</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-building"></i> Associados cadastrados por agência</a>
+                    <a class="dropdown-item" href="{{ route('contas.agencia') }}"><i class="fa fa-building"></i> Associados cadastrados por agência</a>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('contas.contas.index') }}"> <i class="fa fa-dollar"></i> Contas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('contas.contas.index') }}"> <i class="fa fa-cloud-upload"></i> Importar arquivo de contas</a>

@@ -20,10 +20,16 @@ Route::group(['as' => 'pages.', 'namespace' => "Pages"], function () {
 });
 
 Route::group(['as' => 'associados.', 'namespace' => "Associados"], function () {
+    Route::get('/associados/agencia', 'AssociadosController@getAssociadosAgencia')->name('agencia');
     Route::resource('associados', 'AssociadosController');
 });
 
 Route::group(['as' => 'contas.', 'namespace' => "Contas"], function () {
+    Route::get('/contas/agencia', 'ContasController@getAssociadosAgencia')->name('agencia');
+    Route::get('/contas/associado/{associado_id}', 'ContasController@getAssociadosContas')->name('contas.associado');
+    Route::get('/contas/create/{associado_id}', 'ContasController@create')->name('create');
+    Route::get('/contas/agencia/busca', 'ContasController@buscaAssociadosAgencia')->name('agencia.busca');
     Route::resource('contas', 'ContasController');
     Route::post('/contas/importacao', 'ContasController@importacao')->name('importar');
+
 });

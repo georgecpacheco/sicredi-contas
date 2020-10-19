@@ -35,6 +35,7 @@
                                        'delete-form-{{$associado->associado_id}}').submit();">
                                 <button class="btn"><i class="fa fa-trash"></i></button>
                             </a>
+                            <a class="btn-acao pull-left text-center transition" href="{{ route('contas.contas.associado',["associado_id" => $associado->associado_id]) }}"><button class="btn"><i class="fa fa-dollar"></i></button></a>
                         </td>
                         <form id="delete-form-{{$associado->associado_id}}"
                               + action="{{route('associados.associados.destroy', $associado->associado_id)}}"

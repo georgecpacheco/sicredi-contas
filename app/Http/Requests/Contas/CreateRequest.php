@@ -12,6 +12,7 @@ class CreateRequest extends BaseRequest implements ICreateRequest {
     protected $fields = [
         'conta_agencia',
         'conta_cpf',
+        'conta_tipo',
     ];
 
     public function __construct(Repository $repo) {

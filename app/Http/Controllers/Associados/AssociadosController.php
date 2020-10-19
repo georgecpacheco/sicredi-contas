@@ -20,10 +20,6 @@ class AssociadosController extends Controller
     public function index()
     {
         $data['associados'] = $this->repository->getAll();
-        $data['search'] = request()->get('search', '');
-        if ($data['search']){
-            $data['associados'] = $this->repository->busca($data['search']);
-        }
         return view('associados.index')->with($data);
     }
 
@@ -58,5 +54,16 @@ class AssociadosController extends Controller
     public function destroy($id) {
         $this->repository->deleteObj($id);
         return redirect()->back()->with(['success' => 'Conta excluída com sucesso!']);
+    }
+
+    public function getAssociadosAgencia()
+    {
+      $dados =  $data['associados'] = $this->repository->getAll();
+    //  dd($data['associados']);
+        foreach ($dados as $dado){
+            dd($dado);
+            dd($dado->contas);
+        }
+        return view('associados.agencia')->with($data);
     }
 }

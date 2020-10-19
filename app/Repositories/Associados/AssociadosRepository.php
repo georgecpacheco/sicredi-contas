@@ -34,4 +34,5 @@ class AssociadosRepository extends BaseRepository {
         });
         return $this;
     }
+
 }

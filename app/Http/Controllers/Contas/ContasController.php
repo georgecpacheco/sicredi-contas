@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Contas\CreateRequest;
 use App\Http\Requests\Contas\ImportRequest;
 use App\Http\Requests\Contas\UpdateRequest;
+use App\Models\Associados\Associados;
+use Illuminate\Http\Request;
 use App\Imports\ContasImport;
 use App\Models\Contas\Contas;
 use App\Repositories\Contas\ContasRepository as Repository;
@@ -68,21 +70,22 @@ class ContasController extends Controller
         file_put_contents($this->file, $log, FILE_APPEND);
     }
 
-    public function create()
+    public function create($associado_id)
     {
-        return view('contas.create');
+        $associado = Associados::find($associado_id);
+        return view('contas.create', compact('associado'));
     }
 
     public function store(CreateRequest $request)
     {
         $this->repository->createObj($request->only($request->fields));
-        return redirect()->route('contas.index')->with(['success' => 'Conta adicionada com sucesso!']);
+        return redirect()->route('contas.contas.index')->with(['success' => 'Conta adicionada com sucesso!']);
     }
 
 
     public function edit($id) {
-        $loja =  $this->repository->getById($id);
-        return view('contas.edit',compact('loja'));
+        $conta =  $this->repository->getById($id);
+        return view('contas.edit',compact('conta'));
     }
 
     public function update(UpdateRequest $request, $id) {
@@ -99,5 +102,25 @@ class ContasController extends Controller
     public function destroy($id) {
         $this->repository->deleteObj($id);
         return redirect()->back()->with(['success' => 'Conta excluída com sucesso!']);
+    }
+
+    public function getAssociadosAgencia()
+    {
+        $data['contas'] = $this->repository->getAgencia();
+        return view('contas.agencia')->with($data);
+    }
+
+    public function buscaAssociadosAgencia(Request $request)
+    {
+        $agencia = $request->get('agencia');
+        $data['contas'] = $this->repository->getAgencia($agencia);
+        return view('contas.agencia')->with($data);
+    }
+
+    public function getAssociadosContas($associado)
+    {
+        $data['associado'] = Associados::find($associado);
+        $data['contas'] = $this->repository->getcontas($associado);
+        return view('contas.associado')->with($data);
     }
 }

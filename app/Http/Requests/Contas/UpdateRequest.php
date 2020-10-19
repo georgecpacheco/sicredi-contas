@@ -12,6 +12,7 @@ class UpdateRequest extends BaseRequest implements IUpdateRequest {
     protected $fields = [
         'conta_agencia',
         'conta_cpf',
+        'conta_tipo',
     ];
 
     public function __construct(Repository $repo) {
